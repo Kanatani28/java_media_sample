@@ -1,0 +1,15 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/media_sample
+    username: media-user
+    password: p@ssw0rD
+    driverClassName: com.mysql.cj.jdbc.Driver
+  thymeleaf:
+    cache: false
+    
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+    default-fetch-size: 100
+    default-statement-timeout: 30
+    cache-enabled: false
