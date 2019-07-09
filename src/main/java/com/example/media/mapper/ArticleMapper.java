@@ -40,7 +40,8 @@ public interface ArticleMapper {
 			+ "  ON u.id = a.author_id "
 			+ "WHERE "
 			+ "  a.deleted_at IS NULL "
-			+ "LIMIT 5 OFFSET #{offset}")
+			+ "ORDER BY a.created_at DESC "
+			+ "LIMIT 5 OFFSET #{offset} ")
 	public List<Article> selectPerPage(int offset);
 	
 	@Select("SELECT COUNT(id) FROM articles WHERE deleted_at IS NULL")
