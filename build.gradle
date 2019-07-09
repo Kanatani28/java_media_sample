@@ -1,6 +1,7 @@
 plugins {
 	id 'org.springframework.boot' version '2.1.6.RELEASE'
 	id 'java'
+	id 'eclipse'
 	id 'war'
 }
 
@@ -27,4 +28,19 @@ dependencies {
 	compile('org.webjars:bootstrap:4.3.1')
 	compile("org.springframework.boot:spring-boot-devtools")
 	compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.9'
+	
+	testCompile group: 'org.dbunit', name: 'dbunit', version: '2.6.0'
+	testCompile group: 'org.assertj', name: 'assertj-core', version: '3.12.2'
+	testCompile group: 'org.mockito', name: 'mockito-core', version: '2.28.2'
+	testCompile group: 'org.mockito', name: 'mockito-junit-jupiter', version: '2.28.2'
+    
+    testImplementation('org.junit.jupiter:junit-jupiter:5.5.0')
+	
+}
+
+test {
+	useJUnitPlatform()
+	testLogging {
+		events "passed", "skipped", "failed"
+	}
 }
