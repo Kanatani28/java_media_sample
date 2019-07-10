@@ -23,3 +23,7 @@ footer {
 .pagination { 
 	justify-content: center; 
 }
+
+.navbar {
+	color: white;
+}
