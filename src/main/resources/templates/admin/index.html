@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<form class="form-horizontal" method="POST" th:action="@{/login/auth}" th:object="${loginForm}">
+			<div class="login-form">
+				<div class="form-group row">
+					<label for="userId" class="col-lg-2 col-form-label">Email</label>
+					<div class="col-sm-3">
+						<input th:field="*{userId}" type="text" class="form-control form-control-sm" th:errorclass="is-invalid" maxlength="">
+					</div>
+				</div>
+				<div class="form-group row">
+					<label for="password" class="col-lg-2 col-form-label">Password</label>
+					<div class="col-sm-3 mb-1">
+						<input th:field="*{password}" type="password" class="form-control form-control-sm" th:errorclass="is-invalid" maxlength="">
+					</div>
+					<div class="col-sm-3">
+						<button type="submit" class="btn btn-primary btn-sm">Login</button>
+					</div>
+				</div>
+			</div>
+<!-- 			<th:block th:replace="fragment/message_area :: message_area"></th:block>
+ -->
+			<!-- <ul>
+				<li th:each="error : *{loginErrors}" th:text="*{error}"></li>
+		</ul>  -->
+		</form>
+</body>
+</html>
