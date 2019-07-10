@@ -2,6 +2,7 @@ package com.example.media.mapper;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
@@ -46,5 +47,16 @@ public interface ArticleMapper {
 	
 	@Select("SELECT COUNT(id) FROM articles WHERE deleted_at IS NULL")
 	public int countAll();
+	
+	@Insert("  INSERT INTO articles( "
+			+ "  title, "
+			+ "  body, "
+			+ "  author_id "
+			+ ") VALUES("
+			+ "  #{title},"
+			+ "  #{body}, "
+			+ "  #{authorId}"
+			+ ")")
+	public int insert(Article article);
 
 }

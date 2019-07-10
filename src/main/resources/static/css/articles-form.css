@@ -1,0 +1,12 @@
+@charset "UTF-8";
+
+#article-title {
+	width: 100%;
+	font-size: 20px;
+}
+
+#article-body {
+	width: 100%;
+	font-size: 20px;
+	resize: none;
+}

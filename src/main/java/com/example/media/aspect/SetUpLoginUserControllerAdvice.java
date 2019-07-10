@@ -5,6 +5,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
+import com.example.media.model.Admin;
 import com.example.media.security.SecurityUser;
 
 @ControllerAdvice

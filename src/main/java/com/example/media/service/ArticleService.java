@@ -44,5 +44,9 @@ public class ArticleService {
 		
 		return  pagerCount;
 	}
+	
+	public int add(Article article) {
+		return articleMapper.insert(article);
+	}
 
 }
