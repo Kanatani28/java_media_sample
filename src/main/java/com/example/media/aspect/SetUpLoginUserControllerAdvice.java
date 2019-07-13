@@ -9,13 +9,13 @@ import com.example.media.security.SecurityUser;
 
 @ControllerAdvice
 public class SetUpLoginUserControllerAdvice {
-	
-	@ModelAttribute
-	public void setUpLoginUser(Model model, Authentication auth) {
-		if (auth == null) {
-			return;
-		}
-		SecurityUser springSecuirityUser = (SecurityUser) auth.getPrincipal();
-		model.addAttribute("loginUser", springSecuirityUser.getLoginUser());
-	}
+    
+    @ModelAttribute
+    public void setUpLoginUser(Model model, Authentication auth) {
+        if (auth == null) {
+            return;
+        }
+        SecurityUser springSecuirityUser = (SecurityUser) auth.getPrincipal();
+        model.addAttribute("loginUser", springSecuirityUser.getLoginUser());
+    }
 }

@@ -18,31 +18,31 @@ import com.example.media.form.LoginForm;
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
-	
-	@Autowired
-	HttpSession session;
+    
+    @Autowired
+    HttpSession session;
 
-	@GetMapping("/login")
-	public String index(@ModelAttribute("loginForm") LoginForm loginForm, BindingResult bindingResult) {
-		
-		Optional<LoginForm> loginFormAtFailure = getLoginFormAtFailure();
-		loginFormAtFailure.ifPresent(f -> {
-			 BeanUtils.copyProperties(f, loginForm);
-			 f.getLoginErrors().forEach(e -> bindingResult.addError(e));
-		});  
+    @GetMapping("/login")
+    public String index(@ModelAttribute("loginForm") LoginForm loginForm, BindingResult bindingResult) {
+        
+        Optional<LoginForm> loginFormAtFailure = getLoginFormAtFailure();
+        loginFormAtFailure.ifPresent(f -> {
+             BeanUtils.copyProperties(f, loginForm);
+             f.getLoginErrors().forEach(e -> bindingResult.addError(e));
+        });  
 
-		return "admin/index";
-	}
-	
-	private Optional<LoginForm> getLoginFormAtFailure() {
-		
-		Object loginForm = session.getAttribute(Constants.SESSION_KEY_LOGIN_FORM);
-		session.removeAttribute(Constants.SESSION_KEY_LOGIN_FORM);
+        return "admin/index";
+    }
+    
+    private Optional<LoginForm> getLoginFormAtFailure() {
+        
+        Object loginForm = session.getAttribute(Constants.SESSION_KEY_LOGIN_FORM);
+        session.removeAttribute(Constants.SESSION_KEY_LOGIN_FORM);
 
-		if (loginForm == null) {
-			return Optional.empty();
-		} else {
-			return Optional.of((LoginForm) loginForm);
-		}
-	}
+        if (loginForm == null) {
+            return Optional.empty();
+        } else {
+            return Optional.of((LoginForm) loginForm);
+        }
+    }
 }

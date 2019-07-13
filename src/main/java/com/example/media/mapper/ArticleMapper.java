@@ -5,11 +5,30 @@ import java.util.List;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import com.example.media.model.Article;
 
 @Mapper
 public interface ArticleMapper {
+
+	@Select("  SELECT "
+			+ "  a.id, "
+			+ "  title, "
+			+ "  body, "
+			+ "  author_id, "
+			+ "  u.name AS author_name, "
+			+ "  a.created_at, "
+			+ "  a.updated_at "
+			+ "FROM "
+			+ "  articles a "
+			+ "INNER JOIN users u "
+			+ "  ON u.id = a.author_id "
+			+ "WHERE "
+			+ "  a.id = #{id} "
+			+ "AND "
+			+ "  a.deleted_at IS NULL")
+	public Article selectById(int id);
 	
 	@Select("  SELECT "
 			+ "  a.id, "
@@ -58,5 +77,17 @@ public interface ArticleMapper {
 			+ "  #{authorId}"
 			+ ")")
 	public int insert(Article article);
+	
+	@Update("  UPDATE "
+			+ "  articles "
+			+ "SET "
+			+ "  title = #{title}, "
+			+ "  body = #{body}, "
+			+ "  updated_at = now() "
+			+ "WHERE "
+			+ "  id = #{id} "
+			+ "AND "
+			+ "  author_id = #{authorId}")
+	public int update(Article article);
 
 }

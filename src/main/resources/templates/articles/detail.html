@@ -17,18 +17,17 @@
       </h1>
     </header>
     
-    <div th:if="${articles.size() == 0}">
-      Articles not found ...
+    <div th:if="${article == null}">
+      Article not found ...
     </div>
     
-    <th:block th:unless="${articles.size() == 0}">
-      <article class="unit row" th:each="article : ${articles}">
+    <th:block th:unless="${article == null}">
+      <article class="unit row">
         <header class="col-md-12">
           <div class="create-date" th:text="${article.createdAtFormatted}"></div>
           <h2 class="title" th:text="${article.title}"></h2>
         </header>
         <div class="body col-md-12" th:text="${article.body}"></div>
-        <a class="col-md-12" th:href="@{/articles/detail?id=__${article.id}__}">more</a>
         <footer class="col-md-12">
           <div class="author-info">
             <span th:text="${article.authorName}"></span>
@@ -39,6 +38,7 @@
         </footer>
       </article>
     
+    <!-- 
       <nav th:if="${articles.size() != 0}">
         <ul class="pagination">
           <li class="page-item previous" th:classappend="${currentPage == 1} ? 'disabled' : ''">
@@ -53,6 +53,7 @@
         </ul>
       </nav>
     </th:block>
+     -->
   </div>
   
   <footer class="footer">
