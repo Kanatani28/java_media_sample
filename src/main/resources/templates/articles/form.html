@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <th:block th:include="fragment/head">
+  </th:block>
+  <link rel="stylesheet" th:href="@{/css/articles.css}">
+  <link rel="stylesheet" th:href="@{/css/articles-form.css}">
+</head>
+<body>
+
+  <th:block th:include="fragment/navbar">
+  </th:block>
+  
+  <div class="container">
+  
+    <form th:action="@{/articles/create}" th:object="${articleForm}" method="post">
+      <div>Edit</div><div>Preview</div>
+      <!-- 
+      <input id="article-title" name="title"  type="text" />
+      <textarea id="article-body" name="body" rows="30" cols="100"></textarea>
+      <br>
+      <input id="submit-button" type="submit" />
+       -->
+      <div class="form-group">
+        <input  th:field="*{title}" type="text" class="form-control" id="article-title" placeholder="Title">
+      </div>
+      <div class="form-group">
+        <textarea  th:field="*{body}" class="form-control" id="article-body" placeholder="Body" rows="30" cols="100"></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </div>
+</body>
+</html>
