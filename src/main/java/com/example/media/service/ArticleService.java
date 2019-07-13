@@ -30,9 +30,6 @@ public class ArticleService {
 	public int findPagerCount() {
 		
 		int articleCount = articleMapper.countAll();
-		if(articleCount == 0) {
-			return 1;
-		}
 		
 		int pagerCount = 0;
 		
