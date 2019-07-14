@@ -41,7 +41,7 @@ class ArticleServiceTest {
     private DataSourceConfigForTest testConfig;
     
     @Autowired
-    private ArticleService articleService;
+    private ArticleService target;
     
     @Nested
     @SpringBootTest
@@ -53,11 +53,11 @@ class ArticleServiceTest {
         void test1() {
             List<Article> articlesActual = null;
             int expectedSize = 0;
-            articlesActual = articleService.findPerPage(1);
+            articlesActual = target.findPerPage(1);
             assertEquals(expectedSize, articlesActual.size());
             
             // pager count
-            int pagerCount = articleService.findPagerCount();
+            int pagerCount = target.findPagerCount();
             assertEquals(expectedSize, pagerCount);
         }
     }
@@ -88,7 +88,7 @@ class ArticleServiceTest {
             // test in 2 times 
             for(var i = 0; i < 3; i++) {
             	int pageNum = i + 1;
-            	articlesActual = articleService.findPerPage(pageNum);
+            	articlesActual = target.findPerPage(pageNum);
             	// check size
                 assertEquals(articlesActual.size(), expectedSize[i]);
 
@@ -100,7 +100,7 @@ class ArticleServiceTest {
             }
             
             // pager count
-            int pagerCount = articleService.findPagerCount();
+            int pagerCount = target.findPagerCount();
             assertEquals(DATA_COUNT / ARTICLES_PER_PAGE_COUNT, pagerCount);
         }
     }
@@ -132,7 +132,7 @@ class ArticleServiceTest {
             // test in 4 times 
             for(var i = 0; i < 4; i++) {
             	int pageNum = i + 1;
-            	articlesActual = articleService.findPerPage(pageNum);
+            	articlesActual = target.findPerPage(pageNum);
             	// check size
                 assertEquals(articlesActual.size(), expectedSize[i]);
 
@@ -144,7 +144,7 @@ class ArticleServiceTest {
             }
             
             // pager count
-            int pagerCount = articleService.findPagerCount();
+            int pagerCount = target.findPagerCount();
             assertEquals(DATA_COUNT / ARTICLES_PER_PAGE_COUNT + 1, pagerCount);
         }
     }
@@ -168,7 +168,7 @@ class ArticleServiceTest {
         @DisplayName("1件取得")
         void test1() throws IOException {
         	final String ARTICLE_ID = "1";
-            Article articlesActual = articleService.find(ARTICLE_ID);
+            Article articlesActual = target.find(ARTICLE_ID);
             
             Map<String, List<Map<String, Object>>> ymlData = testConfig.getYamlData("datasets/articles/find/articles03.yml");
             Map<String, Object> article = ymlData.get("articles").get(0);
@@ -189,7 +189,7 @@ class ArticleServiceTest {
         @DisplayName("削除日時があるデータは取得しない")
         void test2() {
             Article articlesActual = null;
-            articlesActual = articleService.find("2");
+            articlesActual = target.find("2");
             assertNull(articlesActual);
         }
         
@@ -197,7 +197,7 @@ class ArticleServiceTest {
         @DisplayName("存在しないID")
         void test3() {
             Article articlesActual = null;
-            articlesActual = articleService.find("3");
+            articlesActual = target.find("3");
             assertNull(articlesActual);
         }
 
@@ -205,7 +205,7 @@ class ArticleServiceTest {
         @DisplayName("IDが文字列")
         void test4() {
             Article articlesActual = null;
-            articlesActual = articleService.find("a");
+            articlesActual = target.find("a");
             assertNull(articlesActual);
         }
     }
@@ -236,9 +236,9 @@ class ArticleServiceTest {
                     .setDestinationNameTokenizer(NameTokenizers.CAMEL_CASE);
             Article article = mapper.map(articleMap, Article.class);
             
-            articleService.add(article);
+            target.add(article);
             
-            Article actual = articleService.find("1");
+            Article actual = target.find("1");
             assertEquals(article.getId(), actual.getId());
             assertEquals(article.getAuthorId(), actual.getAuthorId());
             assertEquals(article.getBody(), actual.getBody());
