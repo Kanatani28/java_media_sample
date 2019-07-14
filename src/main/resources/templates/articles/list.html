@@ -24,7 +24,13 @@
     <th:block th:unless="${articles.size() == 0}">
       <article class="unit row" th:each="article : ${articles}">
         <header class="col-md-12">
-          <div class="create-date" th:text="${article.createdAtFormatted}"></div>
+          <div class="create-date row">
+            <div class="col-md-6" th:text="${article.createdAtFormatted}">2019-07-13 23:57</div>
+            <div class="col-md-6" align="right">
+              <a th:if="${loginUser != null}" th:href="@{/articles/edit?id=__${article.id}__}">Edit</a>
+            </div>
+          </div>
+          
           <h2 class="title" th:text="${article.title}"></h2>
         </header>
         <div class="body col-md-12" th:text="${article.body}"></div>
