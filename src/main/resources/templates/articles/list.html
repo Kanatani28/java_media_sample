@@ -34,7 +34,7 @@
           <h1 class="title" th:text="${article.title}"></h1>
         </header>
         <div class="body col-md-12" th:utext="${article.markedBody}"></div>
-        <a class="col-md-12" th:href="@{/articles/detail?id=__${article.id}__}">more</a>
+        <a class="col-md-12" th:href="@{/articles/detail?id=__${article.id}__}">more...</a>
         <footer class="col-md-12">
           <div class="author-info">
             <span th:text="${article.authorName}"></span>

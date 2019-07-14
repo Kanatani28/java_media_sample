@@ -8,10 +8,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import com.example.media.security.SecurityUser;
 
 @ControllerAdvice
-public class SetUpLoginUserControllerAdvice {
+public class SetupLoginUserControllerAdvice {
     
     @ModelAttribute
-    public void setUpLoginUser(Model model, Authentication auth) {
+    public void setupLoginUser(Model model, Authentication auth) {
         if (auth == null) {
             return;
         }
