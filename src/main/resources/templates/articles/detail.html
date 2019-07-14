@@ -25,9 +25,9 @@
       <article class="unit row">
         <header class="col-md-12">
           <div class="create-date" th:text="${article.createdAtFormatted}"></div>
-          <h2 class="title" th:text="${article.title}"></h2>
+          <h1 class="title" th:text="${article.title}"></h1>
         </header>
-        <div class="body col-md-12" th:text="${article.body}"></div>
+        <div class="body col-md-12" th:utext="${article.markedBody}"></div>
         <footer class="col-md-12">
           <div class="author-info">
             <span th:text="${article.authorName}"></span>

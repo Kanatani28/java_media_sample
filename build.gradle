@@ -26,8 +26,10 @@ dependencies {
 	testImplementation 'org.springframework.security:spring-security-test'
 	compile('org.webjars:jquery:3.3.1')
 	compile('org.webjars:bootstrap:4.3.1')
+    compile group: 'org.webjars.bowergithub.markedjs', name: 'marked', version: '0.6.2'
 	compile("org.springframework.boot:spring-boot-devtools")
 	compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.9'
+	compile group: 'io.github.gitbucket', name: 'markedj', version: '1.0.16'
 	
 	testCompile group: 'org.dbunit', name: 'dbunit', version: '2.6.0'
 	testCompile group: 'org.assertj', name: 'assertj-core', version: '3.12.2'

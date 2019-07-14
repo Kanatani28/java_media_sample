@@ -109,7 +109,7 @@ public class ArticleController {
         }
 
         Article article = articleService.find(articleId);
-        if(article == null) {
+        if(article == null || article.getAuthorId() != ((Admin) SecurityUser.getCurrentLoginUser()).getId()) {
         	return "redirect:/articles/form";
         }
         
