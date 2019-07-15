@@ -5,6 +5,7 @@
   </th:block>
   <link rel="stylesheet" th:href="@{/css/articles.css}">
   <link rel="stylesheet" th:href="@{/css/articles-form.css}">
+  <script type="text/javascript" th:src="@{/js/articles-form.js}"></script>
 </head>
 <body>
 
@@ -14,15 +15,40 @@
   <div class="container">
   
     <form th:action="${isEdit} ? @{/articles/update} : @{/articles/create}" th:object="${articleForm}" method="post">
-      <div>Edit</div><div>Preview</div>
-      <div class="form-group">
-        <input th:field="*{title}" type="text" class="form-control" id="article-title" placeholder="Title">
+      <ul id="edit-navbar" class="nav nav-tabs">
+        <li class="nav-item">
+          <a id="tab-edit" class="form-tab nav-link active" href="#">Edit</a>
+        </li>
+        <li class="nav-item">
+          <a id="tab-preview" class="form-tab nav-link" href="#">Preview</a>
+        </li>
+      </ul>
+      <div id="edit-area">
+        <div class="form-group">
+          <input th:field="*{title}" type="text" class="form-control" id="article-title" placeholder="Title">
+        </div>
+        <input th:field="*{id}" type="hidden" />
+        <div class="form-group">
+          <input id="imageFile" type="file" name="imageFile" accept="image/*">
+        </div>
+        <div class="form-group">
+          <textarea th:field="*{body}" class="form-control" id="article-body" placeholder="Body" rows="30" cols="100"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
       </div>
-      <input th:field="*{id}" type="hidden" />
-      <div class="form-group">
-        <textarea  th:field="*{body}" class="form-control" id="article-body" placeholder="Body" rows="30" cols="100"></textarea>
+      
+      <div id="preview-area" style="display: none">
+        <article class="unit row">
+        <header class="col-md-12">
+          <h1 id="article-title-preview" class="title" th:text="*{title}"></h1>
+        </header>
+        <div id="article-body-preview" class="col-md-12" th:utext="*{body}"></div>
+      </article>
       </div>
-      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+    <img id="preview" src="" />
+    <form id="image-form" th:action="@{/images/add-image}" method="post" style="display : none">
+    hoge
     </form>
   </div>
 </body>
