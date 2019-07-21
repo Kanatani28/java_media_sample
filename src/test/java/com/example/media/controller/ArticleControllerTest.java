@@ -162,7 +162,7 @@ class ArticleControllerTest {
         @DisplayName("存在するIDをパラメータにしてアクセス")
         void test() throws Exception {
         	final int ID = 1;
-            mockMvc.perform(get("/articles/detail?id=" + ID))
+            mockMvc.perform(get("/articles/detail/" + ID))
                 .andExpect(status().isOk())
                 .andExpect(view().name("/articles/detail"))
                 .andExpect(model().attributeExists("article"))
@@ -174,7 +174,7 @@ class ArticleControllerTest {
         @DisplayName("存在しないIDをパラメータにしてアクセス")
         void test2() throws Exception {
         	final int ID = 99;
-            mockMvc.perform(get("/articles/detail?id=" + ID))
+            mockMvc.perform(get("/articles/detail/" + ID))
                 .andExpect(status().isOk())
                 .andExpect(view().name("/articles/detail"))
                 .andExpect(model().attribute("article", is(nullValue())))
@@ -185,7 +185,7 @@ class ArticleControllerTest {
         @DisplayName("数値以外のIDをパラメータにしてアクセス")
         void test3() throws Exception {
         	final String ID = "a";
-            mockMvc.perform(get("/articles/detail?id=" + ID))
+            mockMvc.perform(get("/articles/detail/" + ID))
                 .andExpect(status().isOk())
                 .andExpect(view().name("/articles/detail"))
                 .andExpect(model().attribute("article", is(nullValue())))
@@ -257,7 +257,7 @@ class ArticleControllerTest {
         @DisplayName("存在するIDを指定してアクセス")
         void test() throws Exception {
         	final int ID = 1;
-        	MvcResult result = mockMvc.perform(get("/articles/edit?id=" + ID))
+        	MvcResult result = mockMvc.perform(get("/articles/edit/" + ID))
                 .andExpect(status().isOk())
                 .andExpect(view().name("/articles/form"))
                 .andExpect(model().attributeExists("articleForm"))
@@ -276,7 +276,7 @@ class ArticleControllerTest {
         @DisplayName("存在しないIDを指定してアクセス")
         void test2() throws Exception {
         	final int ID = 99;
-        	mockMvc.perform(get("/articles/edit?id=" + ID))
+        	mockMvc.perform(get("/articles/edit/" + ID))
                 .andExpect(status().isFound())
                 .andExpect(view().name("redirect:/articles/form"))
                 .andExpect(model().hasNoErrors());
@@ -286,7 +286,7 @@ class ArticleControllerTest {
         @DisplayName("不正なIDを指定してアクセス(文字列)")
         void test3() throws Exception {
         	final String ID = "aaa";
-        	mockMvc.perform(get("/articles/edit?id=" + ID))
+        	mockMvc.perform(get("/articles/edit/" + ID))
                 .andExpect(status().isFound())
                 .andExpect(view().name("redirect:/articles/form"))
                 .andExpect(model().hasNoErrors());
@@ -296,7 +296,7 @@ class ArticleControllerTest {
         @DisplayName("不正なIDを指定してアクセス(0)")
         void test4() throws Exception {
         	final int ID = 0;
-        	mockMvc.perform(get("/articles/edit?id=" + ID))
+        	mockMvc.perform(get("/articles/edit/" + ID))
                 .andExpect(status().isFound())
                 .andExpect(view().name("redirect:/articles/form"))
                 .andExpect(model().hasNoErrors());
@@ -306,7 +306,7 @@ class ArticleControllerTest {
         @DisplayName("不正なIDを指定してアクセス(マイナス)")
         void test5() throws Exception {
         	final int ID = -1;
-        	mockMvc.perform(get("/articles/edit?id=" + ID))
+        	mockMvc.perform(get("/articles/edit/" + ID))
                 .andExpect(status().isFound())
                 .andExpect(view().name("redirect:/articles/form"))
                 .andExpect(model().hasNoErrors());

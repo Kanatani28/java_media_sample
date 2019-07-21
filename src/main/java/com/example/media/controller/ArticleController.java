@@ -14,6 +14,7 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -59,8 +60,8 @@ public class ArticleController {
         return "/articles/list";
     }
     
-    @GetMapping("/detail")
-    public String detail(@RequestParam(name="id") String articleId, Model model) {
+    @GetMapping("/detail/{articleId}")
+    public String detail(@PathVariable("articleId") String articleId, Model model) {
         Article article = articleService.find(articleId);
         model.addAttribute("article", article);
         return "/articles/detail";
@@ -101,8 +102,8 @@ public class ArticleController {
         return "redirect:/articles/list";
     }
     
-    @GetMapping("/edit")
-    public String edit(@RequestParam(name="id") String articleId, Model model) {
+    @GetMapping("/edit/{articleId}")
+    public String edit(@PathVariable("articleId") String articleId, Model model) {
     	
         if(!StringUtils.isNumeric(articleId) || "0".equals(articleId)) {
             return "redirect:/articles/form";
@@ -145,4 +146,5 @@ public class ArticleController {
         articleService.update(article);
         return "redirect:/articles/list";
     }
+
 }
