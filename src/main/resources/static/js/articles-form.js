@@ -12,12 +12,12 @@ $(function() {
 			prevElm.attr('src', fileRdr.result);
 			prevElm.attr('width', '75%');
 			
-			
 			$('#image-form').append($("<input>", {
 				"value": fileRdr.result,
 				"name": "data",
 				type: "hidden"
-			}))
+			}));
+			$("#image-form").append($("#imageFile"))
 			var form = $('#image-form')[0];
 			   
 		    // FormData オブジェクトを作成
@@ -26,10 +26,16 @@ $(function() {
 			$.ajax({
 				url: '/images/add-image',
 			    method: 'post',
-		        dataType: 'json',
+		        dataType: 'text',
 			    data: formData,
 			    processData: false,
 			    contentType: false
+			}).done(function(data) {
+				$("#article-body").text($("#article-body").text() + "\n\n" + "![a](" + data + ")")
+			}).fail(function(XMLHttpRequest, textStatus, errorThrown){
+			    console.log(XMLHttpRequest.status);
+			    console.log(textStatus);
+			    console.log(errorThrown);
 			})
 			
 		}

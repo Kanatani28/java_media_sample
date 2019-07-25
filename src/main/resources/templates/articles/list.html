@@ -27,14 +27,14 @@
           <div class="create-date row">
             <div class="col-md-6" th:text="${article.createdAtFormatted}">2019-07-13 23:57</div>
             <div class="col-md-6" align="right">
-              <a th:if="${loginUser != null && article.authorId == loginUser.id}" th:href="@{/articles/edit?id=__${article.id}__}">Edit</a>
+              <a th:if="${loginUser != null && article.authorId == loginUser.id}" th:href="@{/articles/edit/__${article.id}__}">Edit</a>
             </div>
           </div>
           
           <h1 class="title" th:text="${article.title}"></h1>
         </header>
         <div class="body col-md-12" th:utext="${article.markedBody}"></div>
-        <a class="col-md-12" th:href="@{/articles/detail?id=__${article.id}__}">more...</a>
+        <a class="col-md-12" th:href="@{/articles/detail/__${article.id}__}">more...</a>
         <footer class="col-md-12">
           <div class="author-info">
             <span th:text="${article.authorName}"></span>
