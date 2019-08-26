@@ -9,9 +9,6 @@ $(function() {
 		fileRdr = new FileReader();
 		
 		fileRdr.onload = function() {
-			prevElm.attr('src', fileRdr.result);
-			prevElm.attr('width', '75%');
-			
 			$('#image-form').append($("<input>", {
 				"value": fileRdr.result,
 				"name": "data",
